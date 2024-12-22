@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <header>
+        <div class="logo">
+            <img src="images/images.png" alt="Website Logo">
+        </div>
+        <nav>
+            <div style="color: lightslategrey;" align="center">
+                <img src="images/logo (1).png" alt="Website Logo">
+            </div>
+        </nav>
+        <div class="contact-info">
+            <p><a href="mailto:saurabhpatil01998@gmail.com">saurabhpatil01998@gmail.com</a></p>
+            <p>Phone: 9765487525</p>
+        </div>
+    </header>
+
+
+    <form>
+        <ul id="shoppingForm1">
+            <li>
+                <a style="font-style: italic;">Please Select Fruits</a>
+                <br>
+                <input type="radio" id="rdo1" name="category" value="fruits" onclick="clickme1('fruits')">
+                <label for="rdo1"></label>
+
+                <label for="itm1" style="font-style: italic;">Item:</label>
+                <select name="item1" id="itm1" disabled required>
+                    <option value="" disabled selected style="font-style: italic;">Please select an item</option>
+                    <option value="chicku -Rs.20 per dozen" style="font-style: italic;">chicku-Rs.20 per dozn</option>
+                    <option value="mango -Rs.30 per dozen" style="font-style: italic;">mango-Rs.30 per dozn</option>
+                    <option value="kaju -Rs.50 per dozen" style="font-style: italic;">kaju-Rs.50 per dozn</option>
+
+                </select>
+
+                <label for="qnt1" style="font-style: italic;">Quantity:</label>
+                <select name="quantity1" id="qnt1" disabled required>
+                    <option value="" disabled selected>Please select a quantity</option>
+
+                    <option value="1" style="font-style: italic;">1 dozen</option>
+                    <option value="2" style="font-style: italic;">2 dozen</option>
+                    <option value="0.5" style="font-style: italic;">1/2 dozen</option>
+                </select>
+
+                <button type="button" id="add1" onclick="add('fruits');" disabled>ADD</button>
+            </li>
+        </ul>
+
+        <ul id="shoppingForm2">
+            <li>
+                <a style="font-style: italic;">Please Select Non-Veg</a>
+                <br>
+                <input type="radio" id="rdo2" name="category" value="non-veg" onclick="clickme1('non-veg')">
+                <label for="rdo2"></label>
+
+                <label for="itm2" style="font-style: italic;">Item:</label>
+                <select name="item2" id="itm2" disabled required>
+                    <option value="" disabled selected style="font-style: italic;">Please select an item</option>
+                    <option value="Fish -Rs.500 per kg" style="font-style: italic;">Fish-Rs.500 per kg</option>
+                    <option value="Mutton -Rs.350 per kg" style="font-style: italic;">Mutton-Rs.350 per kg</option>
+                    <option value="Chicken -Rs.200 per kg" style="font-style: italic;">Chicken-Rs.200 per kg</option>
+                </select>
+
+                <label for="qnt2" style="font-style: italic;">Quantity:</label>
+                <select name="quantity2" id="qnt2" disabled required>
+                    <option value="" disabled selected style="font-style: italic;">Please select a quantity</option>
+
+                    <option value="1" style="font-style: italic;">1 kg</option>
+                    <option value="2" style="font-style: italic;">2 kg</option>
+                    <option value="0.5" style="font-style: italic;">1/2 kg</option>
+                </select>
+
+                <button type="button" id="add2" onclick="add('non-veg')" disabled>ADD</button>
+            </li>
+        </ul>
+
+        <ul id="shoppingForm3">
+            <li>
+                <a style="font-style: italic;">please select Vegetables</a>
+                <br>
+                <input type="radio" id="rdo3" name="category" value="vegetables" onchange="clickme1('vegetables')">
+                <label for="rdo3"></label>
+
+
+                <label for="itm3" style="font-style: italic;">Item:</label>
+                <select name="item3" id="itm3" disabled required>
+                    <option value="" disabled selected style="font-style: italic;">Please select an item</option>
+                    <option value="Potato -Rs.30 per kg" style="font-style: italic;">Potato-Rs.30 per kg</option>
+                    <option value="Cabbage -Rs.40 per kg" style="font-style: italic;">Cabbage-Rs.40 per kg</option>
+                    <option value="Tomato -Rs.20 per kg" style="font-style: italic;">Tomato-Rs.20 per kg</option>
+                </select>
+
+                <label for="qnt3" style="font-style: italic;">Quantity:</label>
+                <select name="quantity3" id="qnt3" disabled required>
+                    <option value="" disabled selected style="font-style: italic;">Please select a quantity</option>
+
+                    <option value="1" style="font-style: italic;">1 kg</option>
+                    <option value="2" style="font-style: italic;">2 kg</option>
+                    <option value="0.5" style="font-style: italic;">1/2 kg</option>
+
+                </select>       
+
+                <button type="button" id="add3" onclick="add('vegetables')" disabled>ADD</button>
+            </li>
+        </ul>
+
+
+        <table id="itemsTable" border="1" style="display: none;">
+            <thead>
+                <tr>
+                    <th style="font-style: italic;">select</th>
+                    <th style="font-style: italic;">Item</th>
+                    <th style="font-style: italic;">Quantity</th>
+                    <th style="font-style: italic;">Price</th>
+                    <th style="font-style: italic;">view</th>
+                    <th style="font-style: italic;">Remove</th>
+                </tr>
+            </thead>
+            <tbody id="itemsBody">
+                <!-- TABLE CRETED HERE DYNAMICALLY -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" style="font-style: italic;"><b style="font-style: italic;">Cost</b></td>
+                    <td colspan="3" id="totalPrice" style="font-style: italic;" style="font-style: italic;">0 Rs</td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <button id="submit" type="button" onclick="submitBill()" class="red-button"
+                            style="font-style: italic;">Submit</button>
+                        <button onclick="cancelBill()" class="green-button" style="font-style: italic;">Cancel</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div id="billInfo" style="display: flex; flex-direction: column;">
+            <table id="billTable" border="1" style="display: none;">
+                <tbody>
+                    <tr>
+                        <td colspan="2" style="font-style: italic; border-bottom: none; text-align: center;">RECEIPT
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" id="date" name="date" style="border-bottom: none;"></td>    
+                    </tr>
+                    <tr>
+                        <td colspan="2" id="time" name="time" style="border-bottom: none;"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-style: italic; border-bottom: none;">Bill No:</td>
+                        <td colspan="1" id="billNo" style="font-style: italic; border-bottom: none;"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-style: italic; border-bottom: none;">Total Price:</td>
+                        <td colspan="1" id="totalPriceBill" style="font-style: italic; border-bottom: none;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="border-bottom: none;">
+                            <button id="gstButton" onclick="discounttable()" style="font-style: italic;">Discount</button>
+                        </td>
+                        <td colspan="1" id="discountedPriceBill" style="font-style: italic; border-bottom: none;"></td>
+                    </tr>
+                    <tr>
+                        <td  style="font-style: italic; border-bottom: none;"  >GST:</td>
+                        <td colspan="1" id="gstBill" style="font-style: italic; border-bottom: none;"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-style: italic; border-bottom: none;">PAID AMOUNT:</td>
+                        <td colspan="1" id="paidAmountBill" style="font-style: italic; border-bottom: none;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="discount-table" >
+            <table id="discount-table" style="display: none;">
+              <thead>
+                <tr>
+                  <th>Purchase Amount</th>
+                  <th>Discount Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>100 to 200</td>
+                  <td>5%</td>
+                </tr>
+                <tr>
+                  <td>500</td>
+                  <td>10%</td>
+                </tr>
+                <tr>
+                  <td>1000</td>
+                  <td>15%</td>
+                </tr>
+                <tr>
+                  <td>Above2000</td>
+                  <td>20%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    </form>
+
+ 
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+  
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
